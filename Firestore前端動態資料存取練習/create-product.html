@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>建立產品</title>
+    <!-- font-awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+    />
+    <!-- bootstrap.css -->
+    <!-- <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    /> -->
+
+    <!-- 客製化Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+  </head>
+
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <a class="navbar-brand" href="./data-index.html">返回會員資料</a>
+      <button
+        class="navbar-toggler d-lg-none"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapsibleNavId"
+        aria-controls="collapsibleNavId"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <button
+              id="loginBtn"
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target=""
+            >
+              Logout
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- navbar end -->
+    <!-- header -->
+    <header class="jumbotron">
+      <div class="container">
+        <h1 class="display-4">建立會員</h1>
+      </div>
+    </header>
+    <!-- header end -->
+    <!-- section -->
+    <section class="py-5">
+      <form id="createUserForm" class="container">
+        <div class="form-group">
+          <label for="userName">姓名</label>
+          <input type="text" id="userName" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="userTimer">驗證時間間隔</label>
+          <input
+            type="number"
+            id="userTimer"
+            class="form-control"
+            min="1"
+            max="180"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="userImage">商品圖片</label>
+          <input
+            type="text"
+            id="userImage"
+            class="form-control"
+            value="https://picsum.photos/id/1070/1200/600"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="userCategory">身分</label>
+          <select id="userCategory" class="form-control">
+            <option value="true">志工</option>
+            <option value="false">一般會員</option>
+            <!-- <option value="文具">文具</option>
+             <option value="清潔用品">清潔用品</option>
+            <option value="其他">其他</option> -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="userAddress">地址</label>
+          <select class="form-control" id="city">
+            <option value="台北市">台北市</option>
+            <option value="新北市">新北市</option>
+            <option value="桃園市">桃園市</option>
+            <option value="台中市">台中市</option>
+            <option value="台南市">台南市</option>
+            <option value="高雄市">高雄市</option>
+            <option value="基隆市">基隆市</option>
+            <option value="新竹市">新竹市</option>
+            <option value="嘉義市">嘉義市</option>
+            <option value="新竹縣">新竹縣</option>
+            <option value="苗栗縣">苗栗縣</option>
+            <option value="彰化縣">彰化縣</option>
+            <option value="南投縣">南投縣</option>
+            <option value="雲林縣">雲林縣</option>
+            <option value="嘉義縣">嘉義縣</option>
+            <option value="屏東縣">屏東縣</option>
+            <option value="宜蘭縣">宜蘭縣</option>
+            <option value="花蓮縣">花蓮縣</option>
+            <option value="臺東縣">臺東縣</option>
+            <option value="澎湖縣">澎湖縣</option>
+          </select>
+          <input
+            type="text"
+            id="userAddress"
+            class="form-control pl-3"
+            placeholder="XX路XX區XX里XXX"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="userPoints">點數</label>
+          <input
+            type="number"
+            id="userPoints"
+            class="form-control"
+            min="0"
+            max="99999999"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-plus"></i> 新增會員
+          </button>
+        </div>
+      </form>
+    </section>
+    <!-- section end -->
+    <!-- jquery.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- popper.min.js -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <!-- bootstrap.min.js -->
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- sweetalert.js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-firestore.js"></script>
+    <!-- Firebase Config -->
+    <script src="./js/firebase-config.js"></script>
+    <!-- badge.js -->
+    <script src="./js/badge.js"></script>
+    <!-- create-product.js -->
+    <script src="./js/create-product.js"></script>
+    <!-- 連結網頁主程式 -->
+    <script src="./js/main.js"></script>
+    <script>
+      storageInit();
+      //這邊每個頁面都要引用主程式，然後去localstate抓狀態來看看
+      //黨味登入的人直接進入
+      console.log(LoginState.state);
+      if (LoginState.state == true) {
+        //什麼事都不做
+      } else if (LoginState.state == false) {
+        //  直接回首頁，因此現在剩下跨業狀態的問題
+        console.log("您尚未登入喔");
+        //先暫時註銷，不然不好做事情
+        window.location = "/";
+      }
+      $("#indexPage").click(function() {
+        window.location = "./";
+      });
+    </script>
+  </body>
+</html>

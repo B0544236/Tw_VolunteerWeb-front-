@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>服務委託</title>
+    <!-- font-awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+    />
+    <!-- bootstrap.css -->
+    <!-- <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    /> -->
+    <!-- 客製化Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+
+    <!-- 使用style.css -->
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <button
+        id="indexPage"
+        type="button"
+        class="btn btn-primary mr-3"
+        data-toggle="modal"
+        data-target=""
+      >
+        官網
+      </button>
+      <a class="navbar-brand" href="./data-index.html">會員資料</a>
+      <a class="navbar-brand" href="./volunteers.html">志工資料</a>
+      <a class="navbar-brand" href="./contracts.html">服務委託資料</a>
+      <a class="navbar-brand" href="./trades.html">點數轉讓紀錄</a>
+      <button
+        class="navbar-toggler d-lg-none"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapsibleNavId"
+        aria-controls="collapsibleNavId"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav ml-auto">
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="./create-product.html">建立會員</a>
+          </li> -->
+          <li class="nav-item">
+            <button
+              id="loginBtn"
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target=""
+            >
+              Logout
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- navbar end -->
+    <!-- header -->
+    <header class="jumbotron">
+      <div class="container">
+        <h1 class="display-4">服務委託資料</h1>
+      </div>
+    </header>
+    <!-- header end -->
+    <!-- section -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row" id="contractRow">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>紀錄id</th>
+                <th>給予者id</th>
+                <th class="">日期</th>
+              </tr>
+            </thead>
+            <tbody id="tradesRow"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5 row">
+      <canvas
+        class="col-6 m-auto"
+        id="myChart"
+        width="400"
+        height="400"
+      ></canvas>
+      <canvas
+        class="col-6 m-auto my-3"
+        id="myChart2"
+        width="400"
+        height="400"
+      ></canvas>
+    </section>
+    <!-- section end -->
+    <!-- jquery.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- popper.min.js -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <!-- bootstrap.min.js -->
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- sweetalert.js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <!-- chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-firestore.js"></script>
+    <!-- real time database -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+    <!-- Firebase Config -->
+    <script src="./js/firebase-config.js"></script>
+    <!-- badge.js -->
+    <script src="./js/badge.js"></script>
+    <!-- index.js -->
+    <script src="./js/trades.js"></script>
+    <!-- 連結網頁主程式 -->
+    <script src="./js/main.js"></script>
+
+    <script>
+      storageInit();
+      //這邊每個頁面都要引用主程式，然後去localstate抓狀態來看看
+      //黨味登入的人直接進入
+      console.log(LoginState.state);
+      if (LoginState.state == true) {
+        //什麼事都不做
+      } else if (LoginState.state == false) {
+        //  直接回首頁，因此現在剩下跨業狀態的問題
+        console.log("您尚未登入喔");
+        //先暫時註銷，不然不好做事情
+        window.location = "/";
+      }
+      $("#indexPage").click(function() {
+        window.location = "./";
+      });
+    </script>
+  </body>
+</html>
